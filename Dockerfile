@@ -3,7 +3,7 @@ FROM ubuntu:latest
 ENV VIEWNIX_ENV=/cavass
 WORKDIR /cavass
 COPY cavass /cavass-src
-COPY wxWidgets-3.2.2.1 /wxWidgets-src
+COPY wxWidgets /wxWidgets-src
 
 RUN apt update && apt upgrade -y
 RUN apt install libgtk2.0-dev openssh-server cmake -y
