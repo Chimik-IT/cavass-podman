@@ -1,6 +1,10 @@
+* Prequesites
+  This setup requieres an installation podman. Please inform yourself on [[https://podman.io/docs/installation][podman.io]]
+  how to install podman on your system.
+  
 * Setup
   1. clone this repo and cd into the folder, by default cavass-podman
-  2. download the recommended wxWidgets from [[https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2][wxwidgets.org]]
+  2. download the recommended wxWidgets linux version from [[https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2][wxwidgets.org]]
   3. unpack
      #+begin_src bash
        tar xfj wxWidgets-<version number>.tar.bz2
@@ -20,7 +24,10 @@
        # for Linux
        xhost +local:*
 
-       # for Mac
+       # TODO for Mac
+       ...
+
+       # TODO for Windows
        ...
      #+end_src
   7. build the container
@@ -33,4 +40,4 @@
      #+end_src
     
     
-* TODO attach volumes for data manipulation
+TODO attach volumes for data manipulation
