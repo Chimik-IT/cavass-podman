@@ -4,13 +4,14 @@
   
 * Setup
   1. clone this repo and cd into the folder, by default cavass-podman
-  2. download the recommended wxWidgets linux version from [[https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2][wxwidgets.org]]
+  2. download the recommended wxWidgets linux version from [[https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2][wxwidgets.org]] into the
+     repo folder
   3. unpack
      #+begin_src bash
        tar xfj wxWidgets-<version number>.tar.bz2
        mv wxWidgets-<version number> wxWidgets
      #+end_src
-  4. download cavass from [[http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz][Penn University]] website and unpack
+  4. download cavass from [[http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz][Penn University]] website also to the repo folder and unpack
      #+begin_src bash
        tar xfz cavass-<version number>.tgz
        mv cavass-<version number> cavass
