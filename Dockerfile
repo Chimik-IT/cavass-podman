@@ -1,24 +1,23 @@
-FROM ubuntu:latest
+FROM debian:bookworm-slim
 
 ENV VIEWNIX_ENV=/cavass
 WORKDIR /cavass
-COPY cavass /cavass-src
-COPY wxWidgets /wxWidgets-src
 
 RUN apt update && apt upgrade -y
-RUN apt install libgtk2.0-dev openssh-server cmake -y
+RUN apt install --no-install-recommends --no-install-suggests  wget bzip2 libgtk2.0-dev make gcc g++ cmake -y
 
-RUN mkdir /wxWidgets-build
-RUN cd /wxWidgets-build
-RUN ../wxWidgets-src/configure --with-gtk
-RUN make -j $(nproc)
-RUN make install
-RUN /sbin/ldconfig
-RUN rm -rf /wxWidgets
+# install wxWidgets
 
-RUN cmake CMAKE_BUILD_TYPE=Release ../cavass-src
-RUN make -j $(nproc)
-RUN rm -rf /cavass-src
+RUN wget --no-check-certificate https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2 -P /cavass
+RUN tar xfj /cavass/wxWidgets-3.2.2.1.tar.bz2 && rm /cavass/wxWidgets-3.2.2.1.tar.bz2
+RUN mkdir wxWidgets-build
+RUN cd wxWidgets-build && ../wxWidgets-3.2.2.1/configure --with-gtk
+RUN cd wxWidgets-build && make -j $(nproc) && make install && /sbin/ldconfig
+RUN rm -rf wxWidgets-3.2.2.1 wxWidgets-build
+# prepare cavass
+
+RUN wget --no-check-certificate http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz -P /cavass
+RUN cmake CMAKE_BUILD_TYPE=Release cavass && make -j $(nproc)
 
 WORKDIR /annotations
 

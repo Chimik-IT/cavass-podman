@@ -11,7 +11,7 @@
        tar xfj wxWidgets-<version number>.tar.bz2
        mv wxWidgets-<version number> wxWidgets
      #+end_src
-  4. download cavass from [[http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz][Penn University]] website also to the repo folder and unpack
+  4. download cavass from [[http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz][University of Pennsylvania]] website also to the repo folder and unpack
      #+begin_src bash
        tar xfz cavass-<version number>.tgz
        mv cavass-<version number> cavass
