@@ -1,41 +1,16 @@
-* Prequesites
+* Prerequesites
   This setup requieres an installation podman. Please inform yourself on [[https://podman.io/docs/installation][podman.io]]
   how to install podman on your system.
   
 * Setup
-  1. clone this repo and cd into the folder, by default cavass-podman
-  2. download the recommended wxWidgets linux version from [[https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2][wxwidgets.org]] into the
-     repo folder
-  3. unpack
-     #+begin_src bash
-       tar xfj wxWidgets-<version number>.tar.bz2
-       mv wxWidgets-<version number> wxWidgets
-     #+end_src
-  4. download cavass from [[http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz][University of Pennsylvania]] website also to the repo folder and unpack
-     #+begin_src bash
-       tar xfz cavass-<version number>.tgz
-       mv cavass-<version number> cavass
-     #+end_src
-  5. build the image
-     #+begin_src bash
-       podman build -t ubuntu:cavass -f Dockerfile 
-     #+end_src
-  6. make sure x11 from the container uses the DISPLAY of your machine
-     #+begin_src bash
-       # for Linux
-       xhost +local:*
 
-       # TODO for Mac
-       ...
-
-       # TODO for Windows
-       ...
-     #+end_src
-  7. build the container
+  Download the image as discribed above.
+  
+  1. build the container
      #+begin_src bash
        podman run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v annotations:/annotations --name cavass-gui ubuntu:cavass
      #+end_src
-  8. the second time you'll start the container just run
+  2. the second time you'll start the container just run
      #+begin_src bash
        podman start cavass-gui
      #+end_src
