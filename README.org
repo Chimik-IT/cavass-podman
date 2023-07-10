@@ -4,13 +4,17 @@
   
 * Setup
 
-  Download the image as discribed above.
   
-  1. build the container
+  
+  1. Pull the image, preferably with podman:
+     #+begin_src bash
+       podman pull ghcr.io/chimik-it/cavass-podman:sha256-7f1de0f7acc03272d2599c970f45cd07fa5bfc0eed680b5e9e78c5e987a7493d.sig
+     #+end_src
+  2. build the container
      #+begin_src bash
        podman run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v annotations:/annotations --name cavass-gui ubuntu:cavass
      #+end_src
-  2. the second time you'll start the container just run
+  3. the second time you'll start the container just run
      #+begin_src bash
        podman start cavass-gui
      #+end_src
