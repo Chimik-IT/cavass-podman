@@ -8,7 +8,7 @@
   
   1. Pull the image, preferably with podman:
      #+begin_src bash
-       podman pull ghcr.io/chimik-it/cavass-podman:sha256-7f1de0f7acc03272d2599c970f45cd07fa5bfc0eed680b5e9e78c5e987a7493d.sig
+       podman pull ghcr.io/chimik-it/cavass-podman
      #+end_src
   2. build the container
      #+begin_src bash
