@@ -17,6 +17,7 @@ RUN rm -rf wxWidgets-3.2.2.1 wxWidgets-build
 # prepare cavass
 
 RUN wget --no-check-certificate http://www.mipg.upenn.edu/cavass/cavass-src-1_0_30.tgz -P /cavass
+RUN cd /cavass && tar xfz cavass-src-1_0_30.tgz 
 RUN cmake CMAKE_BUILD_TYPE=Release cavass && make -j $(nproc)
 
 WORKDIR /annotations
