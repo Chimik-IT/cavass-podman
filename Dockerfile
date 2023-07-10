@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM ubuntu:latest
 
 ENV VIEWNIX_ENV=/cavass
 

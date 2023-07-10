@@ -18,6 +18,13 @@
      #+begin_src bash
        podman start cavass-gui
      #+end_src
-    
-    
-TODO attach volumes for data manipulation
+
+* Troubleshooting
+
+** X11 on MacOS
+   1. install XQuartz
+      #+begin_src bash
+        brew install --cask xquartz
+      #+end_src
+      and start it.
+   TODO attach volumes for data manipulation
