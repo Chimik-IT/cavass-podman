@@ -1,6 +1,9 @@
 FROM ubuntu:20.04
 
-ENV VIEWNIX_ENV=/cavass
+ARG DEBIAN_FRONTEND=noninteractive
+ENV VIEWNIX_ENV=/cavass-build/
+ENV TZ=Europe/Berlin
+
 
 RUN apt update && apt upgrade -y
 RUN apt install --no-install-recommends --no-install-suggests git wget bzip2 libgtk2.0-dev make gcc g++ cmake -y
