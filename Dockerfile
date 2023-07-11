@@ -3,7 +3,7 @@ FROM ubuntu:latest
 ENV VIEWNIX_ENV=/cavass
 
 RUN apt update && apt upgrade -y
-RUN apt install --no-install-recommends --no-install-suggests  wget bzip2 libgtk2.0-dev make gcc g++ cmake -y
+RUN apt install --no-install-recommends --no-install-suggests git wget bzip2 libgtk2.0-dev make gcc g++ cmake -y
 
 # install wxWidgets
 
