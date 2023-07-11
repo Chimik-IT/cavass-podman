@@ -13,7 +13,7 @@ RUN mkdir /wxWidgets-build
 RUN cd /wxWidgets-build && ../wxWidgets-3.2.2.1/configure --with-gtk &&  make -j $(nproc) && make install && /sbin/ldconfig
 
 # install InsitghtToolKit
-RUN wget --no-check.certificate https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.3.0/InsightToolkit-5.3.0.tar.gz -P /
+RUN wget --no-check-certificate https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.3.0/InsightToolkit-5.3.0.tar.gz -P /
 RUN tar xfz /InsightToolkit-5.3.0.tar.gz && rm /InsightToolkit-5.3.0.tar.gz
 RUN mkdir /ITK-build
 RUN cd /ITK-build && cmake -DBUILD_TESTING=ON ../InsightToolkit-5.3.0 && make -j $(nproc) && make install && /sbin/ldconfig
