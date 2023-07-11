@@ -13,14 +13,14 @@ RUN apt install --no-install-recommends --no-install-suggests git wget bzip2 lib
 RUN wget --no-check-certificate https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2 -P /
 RUN tar xfj /wxWidgets-3.2.1.tar.bz2 && rm /wxWidgets-3.2.1.tar.bz2
 RUN mkdir /wxWidgets-build
-RUN cd /wxWidgets-build && ../wxWidgets-3.2.2.1/configure --with-gtk &&  make -j $(nproc) && make install && /sbin/ldconfig
+RUN cd /wxWidgets-build && ../wxWidgets-3.2.1/configure --with-gtk &&  make -j $(nproc) && make install && /sbin/ldconfig
 
 # install InsitghtToolKit
 RUN wget --no-check-certificate https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.2.1/InsightToolkit-5.2.1.tar.gz -P /
 RUN tar xfz /InsightToolkit-5.2.1.tar.gz && rm /InsightToolkit-5.2.1.tar.gz
 RUN mkdir /ITK-build
-RUN cd /ITK-build && cmake ../InsightToolkit-5.3.0 && make -j $(nproc) && make install && /sbin/ldconfig
-RUN rm -r /InsightToolkit-5.3.0 /ITK-build
+RUN cd /ITK-build && cmake ../InsightToolkit-5.2.1 && make -j $(nproc) && make install && /sbin/ldconfig
+RUN rm -r /InsightToolkit-5.2.1 /ITK-build
 
 # prepare cavass
 
