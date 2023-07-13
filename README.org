@@ -18,37 +18,63 @@
          brew install --cask xquarz
          brew install socat
        #+end_src
-** prepare the enviromant
-   This needs to run every time prior to start of the cavass container.
-   1. set socat to listen to a port on your NIC. If there's is no vboxnet available
-      it will use your ethernet or wifi NIC, so make sure you are connected to the net.
-      #+begin_src bash
-        #
-      #+end_src
+*** prepare the enviromant
+    This needs to run every time prior to start of the cavass container.
+    1. set socat to listen to a port on your NIC. If there's is no vboxnet available
+       it will use your ethernet or wifi NIC, so make sure you are connected to the net.
+       #+begin_src bash
+         socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\" &
+       #+end_src
+    2. make sure xhost listens connections from anyhost
+       #+begin_src bash
+         xhost +
+       #+end_src
+*** create the container
+     1. Pull the image, preferably with podman:
+        #+begin_src bash
+          podman pull ghcr.io/chimik-it/cavass-podman
+        #+end_src
+     2. build the container
+        #+begin_src bash
+          podman run -e DISPLAY=`ifconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ifconfig getifaddr en0` ubuntu:cavass
+        #+end_src
+     3. check the name of the container
+        #+begin_src bash
+          podman ps -a | grep cavass-gui
+        #+end_src
+        
 
-      
-      
-  
-  
-    1. Pull the image, preferably with podman:
-       #+begin_src bash
-         podman pull ghcr.io/chimik-it/cavass-podman
-       #+end_src
-    2. build the container
-       #+begin_src bash
-         podman run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v annotations:/annotations --name cavass-gui ubuntu:cavass
-       #+end_src
-    3. the second time you'll start the container just run
-       #+begin_src bash
-         podman start cavass-gui
-       #+end_src
+*** work with the container on a daily basis
+    the second time you'll start the container just run
+    #+begin_src bash
+     podman start cavass-gui-`ifconfig getifaddr en0`
+    #+end_src
 
 * Troubleshooting
+  
+** IP has changed from frist container build
+   
+*** Error
+    Container doesn't start. DISPLAY set improperly
 
-** X11 on MacOS
-   1. install XQuartz
-      #+begin_src bash
-        brew install --cask xquartz
-      #+end_src
-      and start it.
-   TODO attach volumes for data manipulation
+*** Solution
+    check the IP of the NIC en0
+    #+begin_src bash
+      ifconfig getifaddr en0
+    #+end_src
+    and comapre ist to the name of the cavass-container
+    #+begin_src bash
+      podman ps -a | grep cavass-gui
+    #+end_src
+    If it differs rerun the command to create the container
+    #+begin_src bash
+      podman run -e DISPLAY=`ifconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ifconfig getifaddr en0` ubuntu:cavass
+    #+end_src
+
+*** Conclution
+    With setting up the container name depending on the IP the DISPLAY is set to
+    you can simply check if the container exist by running
+    #+begin_src bash
+      podman start cavass-gui-`ifconfig getifaddr en0`
+    #+end_src
+    if not just create one based on the new IP.
