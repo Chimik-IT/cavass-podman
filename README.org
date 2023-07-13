@@ -56,7 +56,7 @@
 *** work with the container on a daily basis
     the second time you'll start the container just run
     #+begin_src bash
-     podman start cavass-gui-`ifconfig getifaddr en0`
+     podman start cavass-gui-`ipconfig getifaddr en0`
     #+end_src
 
 * Troubleshooting
@@ -69,7 +69,7 @@
 *** Solution
     check the IP of the NIC en0
     #+begin_src bash
-      ifconfig getifaddr en0
+      ipconfig getifaddr en0
     #+end_src
     and comapre ist to the name of the cavass-container
     #+begin_src bash
@@ -86,6 +86,6 @@
     With setting up the container name depending on the IP the DISPLAY is set to
     you can simply check if the container exist by running
     #+begin_src bash
-      podman start cavass-gui-`ifconfig getifaddr en0`
+      podman start cavass-gui-`ipconfig getifaddr en0`
     #+end_src
     if not just create one based on the new IP.
