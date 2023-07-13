@@ -1,5 +1,5 @@
 * Prerequesites
-  This setup requieres an installation podman. Please inform yourself on [[https://podman.io/docs/installation][podman.io]]
+  This setup requires an installation of podman. Please inform yourself on [[https://podman.io/docs/installation][podman.io]]
   how to install podman on your system.
   
 * Setup for Mac
@@ -20,6 +20,8 @@
        #+end_src
 *** prepare the enviromant
     This needs to run every time prior to start of the cavass container.
+    (should be scripted)
+    
     1. set socat to listen to a port on your NIC. If there's is no vboxnet available
        it will use your ethernet or wifi NIC, so make sure you are connected to the net.
        #+begin_src bash
@@ -71,7 +73,7 @@
       podman run -e DISPLAY=`ifconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ifconfig getifaddr en0` ubuntu:cavass
     #+end_src
 
-*** Conclution
+*** Conclusion
     With setting up the container name depending on the IP the DISPLAY is set to
     you can simply check if the container exist by running
     #+begin_src bash
