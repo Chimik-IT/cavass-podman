@@ -11,7 +11,7 @@
        #+end_src
     2. install podman-desktop
        #+begin_src bash
-         brew install podman podman-desktop
+         brew install podman
        #+end_src
     3. initialize podman and start the machine
        #+begin_src bash
