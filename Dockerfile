@@ -29,8 +29,6 @@ RUN wget --no-check-certificate http://www.mipg.upenn.edu/cavass/cavass-src-1_0_
 RUN tar xfz cavass-src-1_0_30.tgz -C /
 RUN cd cavass-build && cmake -DCMAKE_BUILD_TYPE=Release ../cavass/ && make -j $(nproc)
 
-RUN apt reomve -y wget git cmake make
-
 WORKDIR /annotations
 
 CMD /cavass-build/cavass
