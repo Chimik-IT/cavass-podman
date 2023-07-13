@@ -2,22 +2,46 @@
   This setup requieres an installation podman. Please inform yourself on [[https://podman.io/docs/installation][podman.io]]
   how to install podman on your system.
   
-* Setup
+* Setup for Mac
+*** Install podman
+    1. install homebrew as describe on [[https://docs.brew.sh/Installation][brew.sh]]
+       but most commonly use:
+       #+begin_src bash
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+       #+end_src
+    2. install podman-desktop
+       #+begin_src bash
+         brew install podman podman-desktop
+       #+end_src
+    3. install packages needed for gtk gui support
+       #+begin_src bash
+         brew install --cask xquarz
+         brew install socat
+       #+end_src
+** prepare the enviromant
+   This needs to run every time prior to start of the cavass container.
+   1. set socat to listen to a port on your NIC. If there's is no vboxnet available
+      it will use your ethernet or wifi NIC, so make sure you are connected to the net.
+      #+begin_src bash
+        
+      #+end_src
 
+      
+      
   
   
-  1. Pull the image, preferably with podman:
-     #+begin_src bash
-       podman pull ghcr.io/chimik-it/cavass-podman
-     #+end_src
-  2. build the container
-     #+begin_src bash
-       podman run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v annotations:/annotations --name cavass-gui ubuntu:cavass
-     #+end_src
-  3. the second time you'll start the container just run
-     #+begin_src bash
-       podman start cavass-gui
-     #+end_src
+    1. Pull the image, preferably with podman:
+       #+begin_src bash
+         podman pull ghcr.io/chimik-it/cavass-podman
+       #+end_src
+    2. build the container
+       #+begin_src bash
+         podman run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v annotations:/annotations --name cavass-gui ubuntu:cavass
+       #+end_src
+    3. the second time you'll start the container just run
+       #+begin_src bash
+         podman start cavass-gui
+       #+end_src
 
 * Troubleshooting
 
