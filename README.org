@@ -13,11 +13,17 @@
        #+begin_src bash
          brew install podman podman-desktop
        #+end_src
-    3. install packages needed for gtk gui support
+    3. initialize podman and start the machine
+       #+begin_src bash
+         podman machine init && podman machine start
+       #+end_src
+       afterwards the podman vm will initialize and start automatically.
+    4. install packages needed for gtk gui support
        #+begin_src bash
          brew install --cask xquarz
          brew install socat
        #+end_src
+    5. restart your machine
 *** prepare the enviromant
     This needs to run every time prior to start of the cavass container.
     (should be scripted)
@@ -37,15 +43,16 @@
           podman pull ghcr.io/chimik-it/cavass-podman
         #+end_src
      2. build the container
+        Please pay attention to the workfolder volume and change it to your
+        workfolder you want to attach.
         #+begin_src bash
-          podman run -e DISPLAY=`ifconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ifconfig getifaddr en0` ubuntu:cavass
+          podman run -e DISPLAY=`ipconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ipconfig getifaddr en0`  ghcr.io/chimik-it/cavass-podma
         #+end_src
      3. check the name of the container
         #+begin_src bash
           podman ps -a | grep cavass-gui
         #+end_src
         
-
 *** work with the container on a daily basis
     the second time you'll start the container just run
     #+begin_src bash
@@ -69,8 +76,10 @@
       podman ps -a | grep cavass-gui
     #+end_src
     If it differs rerun the command to create the container
+    Please pay attention to the workfolder volume and change it to your
+    workfolder you want to attach.
     #+begin_src bash
-      podman run -e DISPLAY=`ifconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ifconfig getifaddr en0` ubuntu:cavass
+      podman run -e DISPLAY=`ipconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ipconfig getifaddr en0`  ghcr.io/chimik-it/cavass-podma
     #+end_src
 
 *** Conclusion
