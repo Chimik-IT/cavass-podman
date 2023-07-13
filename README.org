@@ -23,7 +23,7 @@
    1. set socat to listen to a port on your NIC. If there's is no vboxnet available
       it will use your ethernet or wifi NIC, so make sure you are connected to the net.
       #+begin_src bash
-        
+        #
       #+end_src
 
       
