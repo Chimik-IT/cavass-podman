@@ -46,7 +46,10 @@
         Please pay attention to the workfolder volume and change it to your
         workfolder you want to attach.
         #+begin_src bash
-          podman run -e DISPLAY=`ipconfig getifaddr en0`:0 -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /absolute/path/to/workfolder:/annotations --name cavass-gui-`ipconfig getifaddr en0`  ghcr.io/chimik-it/cavass-podma
+          podman run -e DISPLAY=`ipconfig getifaddr en0`:0 \
+                -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
+                -v /absolute/path/to/workfolder:/annotations \
+                --name cavass-gui-`ipconfig getifaddr en0`  ghcr.io/chimik-it/cavass-podma
         #+end_src
      3. check the name of the container
         #+begin_src bash
